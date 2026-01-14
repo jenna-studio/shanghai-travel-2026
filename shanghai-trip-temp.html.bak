@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanghai Trip 🇨🇳</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #FFB6D9 0%, #D5F4E6 50%, #FFFACD 100%);
+            min-height: 100vh; padding: 20px; line-height: 1.6;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        header {
+            background: linear-gradient(135deg, #FFB6D9, #D4A5E6); color: white;
+            padding: 30px 20px; border-radius: 20px; text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-bottom: 25px;
+        }
+        h1 { font-size: 2em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .trip-info { font-size: 1.1em; margin-top: 10px; }
+        .day-section {
+            background: white; border-radius: 20px; padding: 25px;
+            margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .day-header {
+            display: flex; align-items: center; gap: 15px;
+            margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid;
+        }
+        .day1 .day-header { border-color: #FFB6D9; }
+        .day2 .day-header { border-color: #B4E7CE; }
+        .day3 .day-header { border-color: #D4A5E6; }
+        .day-number { font-size: 3em; font-weight: bold; line-height: 1; }
+        .day1 .day-number { color: #FFB6D9; }
+        .day2 .day-number { color: #B4E7CE; }
+        .day3 .day-number { color: #D4A5E6; }
+        .day-title { flex: 1; }
+        .day-date { font-size: 1.3em; font-weight: bold; color: #333; }
+        .activity-item {
+            margin: 15px 0; padding: 15px; border-radius: 12px; background: #FAFAFA;
+        }
+        .flight { background: linear-gradient(135deg, #FFE5F1, #FFF9E6); border-left: 4px solid #FFB6D9; }
+        .hotel { background: linear-gradient(135deg, #E5F9FF, #F0E5FF); border-left: 4px solid #D4A5E6; }
+        .food { background: linear-gradient(135deg, #FFF9E6, #FFEBE5); border-left: 4px solid #FFD700; }
+        .activity { background: linear-gradient(135deg, #E5FFF0, #E5F9FF); border-left: 4px solid #B4E7CE; }
+        .time {
+            display: inline-block; background: rgba(255,182,217,0.3);
+            padding: 3px 10px; border-radius: 15px; font-weight: bold;
+            font-size: 0.9em; margin-right: 8px; color: #666;
+        }
+        .title { font-weight: bold; font-size: 1.1em; color: #333; margin-bottom: 5px; }
+        .details { color: #666; font-size: 0.95em; margin-top: 5px; }
+        .highlight {
+            background: linear-gradient(135deg, #FFB6D9, #D4A5E6); color: white;
+            padding: 20px; border-radius: 15px; margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .note {
+            background: #FFFACD; border-left: 4px solid #FFD700;
+            padding: 15px; border-radius: 8px; margin: 15px 0; color: #666;
+        }
+        .info-box {
+            background: white; padding: 15px; border-radius: 10px;
+            margin: 15px 0; border-left: 3px solid #D4A5E6;
+        }
+        .info-label {
+            font-weight: bold; color: #D4A5E6; font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            color: #333; font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .info-value a {
+            color: #D4A5E6; text-decoration: none;
+        }
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+        .phrase-category { margin: 25px 0; }
+        .category-title {
+            font-size: 1.4em; color: #D4A5E6; margin-bottom: 15px;
+            padding: 15px; border-bottom: 2px solid #FFB6D9;
+            cursor: pointer; user-select: none;
+            background: white; border-radius: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.3s ease;
+        }
+        .category-title:hover {
+            background: #FFF9E6;
+            transform: translateX(5px);
+        }
+        .category-title .arrow {
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+        .category-title.active .arrow {
+            transform: rotate(90deg);
+        }
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .category-content.active {
+            max-height: 5000px;
+        }
+        .phrase-group { margin: 15px 0; }
+        .phrase-subtitle { font-weight: bold; color: #666; margin-bottom: 10px; font-size: 0.95em; }
+        .phrase-item {
+            background: white; padding: 12px 15px; margin: 8px 0;
+            border-radius: 10px; border-left: 3px solid #B4E7CE;
+        }
+        .chinese { font-size: 1.15em; font-weight: bold; color: #333; margin-bottom: 3px; }
+        .pinyin { font-size: 0.95em; color: #D4A5E6; font-style: italic; margin-bottom: 3px; }
+        .korean { font-size: 0.9em; color: #666; }
+        footer { text-align: center; margin-top: 30px; padding: 20px; color: #666; font-size: 0.9em; }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.5em; }
+            .day-section { padding: 20px; }
+            .day-number { font-size: 2.5em; }
+            .day-date { font-size: 1.1em; }
+            .activity-item { padding: 12px; }
+            .category-title { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>상하이 여행 ☀️🇨🇳</h1>
+        <div class="trip-info">
+            <div>January 22-24, 2026</div>
+            <div>Friends Trip 🎉</div>
+        </div>
+    </header>
+
+    <div class="day-section day1">
+        <div class="day-header">
+            <div class="day-number">1</div>
+            <div class="day-title">
+                <div class="day-date">January 22 (Wed)</div>
+                <div>Arrival & The Bund</div>
+            </div>
+        </div>
+        <div class="activity-item flight">
+            <div class="title"><span class="time">08:25</span>Korean Air KE881</div>
+            <div class="details">ICN → PVG (Arrival: 09:45)</div>
+        </div>
+        <div class="activity-item hotel">
+            <div class="title"><span class="time">12:00</span>Grand Hyatt Shanghai (Pudong)</div>
+            <div class="details">Check-in</div>
+        </div>
+        <div class="activity-item food">
+            <div class="title"><span class="time">13:00</span>Paradise Garden Restaurant</div>
+            <div class="details">Lunch</div>
+        </div>
+        <div class="activity-item activity">
+            <div class="title">Lujiazui & IFC Mall</div>
+            <div class="details">Shopping & exploring</div>
+        </div>
+        <div class="activity-item food">
+            <div class="title"><span class="time">17:00</span>The Bund No.5</div>
+            <div class="details">Beijing Duck (Peking Duck)</div>
+        </div>
+        <div class="activity-item activity">
+            <div class="title">Evening Exploration</div>
+            <div class="details">
+                • Nanjing East Road (shopping district)<br>
+                • The Bund (waterfront promenade)<br>
+                • Oriental Pearl Tower<br>
+                • The Nest (bar/lounge)
+            </div>
+        </div>
+    </div>
+
+    <div class="day-section day2">
+        <div class="day-header">
+            <div class="day-number">2</div>
+            <div class="day-title">
+                <div class="day-date">January 23 (Thu)</div>
+                <div>Shanghai Disneyland 🏰</div>
+            </div>
+        </div>
+        <div class="highlight">
+            <div class="title" style="color: white; font-size: 1.2em;">🎢 Full Day at Shanghai Disneyland!</div>
+            <div style="margin-top: 10px; opacity: 0.95;">
+                Breakfast at Grand Hyatt, then spend the entire day enjoying the park
+            </div>
+        </div>
+        <div class="note">
+            💡 Remember to bring comfortable shoes and stay hydrated!
+        </div>
+        <div class="activity-item hotel">
+            <div class="title">Evening</div>
+            <div class="details">Return to Grand Hyatt Shanghai</div>
+        </div>
+    </div>
+
+    <div class="day-section day3">
+        <div class="day-header">
+            <div class="day-number">3</div>
+            <div class="day-title">
+                <div class="day-date">January 24 (Fri)</div>
+                <div>Xintiandi & Departure</div>
+            </div>
+        </div>
+        <div class="activity-item hotel">
+            <div class="title"><span class="time">15:30</span>Hotel Checkout</div>
+            <div class="details">Grand Hyatt Shanghai - Luggage storage available</div>
+        </div>
+        <div class="activity-item food">
+            <div class="title"><span class="time">13:00</span>Suitangli</div>
+            <div class="details">Dim sum restaurant</div>
+        </div>
+        <div class="activity-item food">
+            <div class="title">Din Tai Fung Xintiandi</div>
+            <div class="details">Xiaolongbao (soup dumplings) specialty</div>
+        </div>
+        <div class="activity-item activity">
+            <div class="title">Xintiandi</div>
+            <div class="details">Upscale shopping & entertainment district</div>
+        </div>
+        <div class="activity-item flight">
+            <div class="title"><span class="time">18:25</span>Korean Air KE2058</div>
+            <div class="details">SHA (Hongqiao) → GMP (Arrival: 21:35)</div>
+        </div>
+        <div class="note">
+            ⚠️ Note: Departing from Hongqiao Airport (SHA), not Pudong (PVG). Allow extra travel time!
+        </div>
+    </div>
+
+    <div class="day-section" style="background: linear-gradient(135deg, #E5F9FF, #F0E5FF);">
+        <div style="text-align: center; margin-bottom: 25px;">
+            <h2 style="color: #D4A5E6; font-size: 1.8em; margin-bottom: 10px;">🏨 Hotel Information</h2>
+            <p style="color: #666; font-size: 1.1em; font-weight: bold;">Grand Hyatt Shanghai</p>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">📍 Address</div>
+            <div class="info-value">
+                Jin Mao Tower, 88 Century Avenue, Pudong<br>
+                Shanghai, 200121, China<br>
+                上海市浦东新区世纪大道88号金茂大厦
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">📞 Phone</div>
+            <div class="info-value">
+                +86 21 5049 1234
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">🕐 Check-in / Check-out</div>
+            <div class="info-value">
+                Check-in: 3:00 PM<br>
+                Check-out: 12:00 PM
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">🌐 Website</div>
+            <div class="info-value">
+                <a href="https://www.hyatt.com/grand-hyatt/ko-KR/shagh-grand-hyatt-shanghai" target="_blank">
+                    Grand Hyatt Shanghai Official Page
+                </a>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">✨ Key Features</div>
+            <div class="info-value">
+                • Located in Jin Mao Tower (floors 53-87)<br>
+                • Stunning views of Shanghai skyline<br>
+                • Near Lujiazui financial district<br>
+                • Walking distance to Shanghai Tower & Oriental Pearl Tower<br>
+                • Multiple restaurants & bars<br>
+                • Spa & fitness center<br>
+                • Indoor pool
+            </div>
+        </div>
+
+        <div class="note">
+            💡 Tip: The hotel is located in Pudong. Day 3 departure is from Hongqiao Airport (different location) - allow 45-60 minutes travel time!
+        </div>
+    </div>
+
+    <div class="day-section" style="background: linear-gradient(135deg, #FFF9E6, #FFE5F1);">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #D4A5E6; font-size: 1.8em; margin-bottom: 10px;">🗣️ Useful Chinese Phrases</h2>
+            <p style="color: #666;">Click on each category to expand</p>
+        </div>
+
+        <div class="phrase-category">
+            <h3 class="category-title" onclick="toggleCategory(this)">
+                <span>🏨 호텔 (Hotel)</span>
+                <span class="arrow">▶</span>
+            </h3>
+            <div class="category-content">
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">외국인 숙박 가능 여부 확인</div>
+                    <div class="phrase-item">
+                        <div class="chinese">外国人可以住吗？</div>
+                        <div class="pinyin">Wàiguórén kěyǐ zhù ma?</div>
+                        <div class="korean">외국인 숙박 가능한가요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">금연룸 요청</div>
+                    <div class="phrase-item">
+                        <div class="chinese">有无烟房吗？</div>
+                        <div class="pinyin">Yǒu wú yān fáng ma?</div>
+                        <div class="korean">금연룸 있나요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">체크인 / 예약 확인</div>
+                    <div class="phrase-item">
+                        <div class="chinese">我要入住</div>
+                        <div class="pinyin">Wǒ yào rùzhù</div>
+                        <div class="korean">체크인할게요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">我在网上订的</div>
+                        <div class="pinyin">Wǒ zài wǎngshàng dìng de</div>
+                        <div class="korean">온라인으로 예약했어요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">护照</div>
+                        <div class="pinyin">Hùzhào</div>
+                        <div class="korean">여권</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">조식 확인 / 추가</div>
+                    <div class="phrase-item">
+                        <div class="chinese">包含早餐吗？</div>
+                        <div class="pinyin">Bāohán zǎocān ma?</div>
+                        <div class="korean">조식 포함인가요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">加一份早餐</div>
+                        <div class="pinyin">Jiā yí fèn zǎocān</div>
+                        <div class="korean">조식 1인분 추가해 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">一天 / 两天</div>
+                        <div class="pinyin">Yì tiān / Liǎng tiān</div>
+                        <div class="korean">하루 / 이틀</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">보증금</div>
+                    <div class="phrase-item">
+                        <div class="chinese">押金可以刷卡吗？</div>
+                        <div class="pinyin">Yājīn kěyǐ shuākǎ ma?</div>
+                        <div class="korean">보증금 카드 결제 되나요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">可以从押金里扣吗？</div>
+                        <div class="pinyin">Kěyǐ cóng yājīn lǐ kòu ma?</div>
+                        <div class="korean">보증금에서 차감할 수 있나요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">수건 추가 요청</div>
+                    <div class="phrase-item">
+                        <div class="chinese">毛巾</div>
+                        <div class="pinyin">Máojīn</div>
+                        <div class="korean">수건</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">再给我一条毛巾</div>
+                        <div class="pinyin">Zài gěi wǒ yì tiáo máojīn</div>
+                        <div class="korean">수건 한 장 더 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">两条</div>
+                        <div class="pinyin">Liǎng tiáo</div>
+                        <div class="korean">두 장</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">청소 시간 조정</div>
+                    <div class="phrase-item">
+                        <div class="chinese">现在不方便，请稍后再来</div>
+                        <div class="pinyin">Xiànzài bù fāngbiàn, qǐng shāohòu zài lái</div>
+                        <div class="korean">지금은 어려우니 조금 있다가 와 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">체크아웃 / 짐 보관</div>
+                    <div class="phrase-item">
+                        <div class="chinese">我要退房</div>
+                        <div class="pinyin">Wǒ yào tuìfáng</div>
+                        <div class="korean">체크아웃할게요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">可以寄存行李吗？</div>
+                        <div class="pinyin">Kěyǐ jìcún xíngli ma?</div>
+                        <div class="korean">짐 보관 가능할까요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">我两点来拿</div>
+                        <div class="pinyin">Wǒ liǎng diǎn lái ná</div>
+                        <div class="korean">2시에 찾으러 올게요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phrase-category">
+            <h3 class="category-title" onclick="toggleCategory(this)">
+                <span>🍽️ 식당 (Restaurant)</span>
+                <span class="arrow">▶</span>
+            </h3>
+            <div class="category-content">
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">자리 / 대기</div>
+                    <div class="phrase-item">
+                        <div class="chinese">有位置吗？</div>
+                        <div class="pinyin">Yǒu wèizhì ma?</div>
+                        <div class="korean">자리 있나요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">几位？</div>
+                        <div class="pinyin">Jǐ wèi?</div>
+                        <div class="korean">몇 분이세요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">要等吗？</div>
+                        <div class="pinyin">Yào děng ma?</div>
+                        <div class="korean">기다려야 하나요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">取号</div>
+                        <div class="pinyin">Qǔ hào</div>
+                        <div class="korean">번호표 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">영업 여부</div>
+                    <div class="phrase-item">
+                        <div class="chinese">现在可以点餐吗？</div>
+                        <div class="pinyin">Xiànzài kěyǐ diǎn cān ma?</div>
+                        <div class="korean">지금 주문 가능해요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">快打烊了吗？</div>
+                        <div class="pinyin">Kuài dǎyàng le ma?</div>
+                        <div class="korean">곧 문 닫나요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">메뉴 / 추천</div>
+                    <div class="phrase-item">
+                        <div class="chinese">有菜单吗？</div>
+                        <div class="pinyin">Yǒu càidān ma?</div>
+                        <div class="korean">메뉴판 있나요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">推荐菜是什么？</div>
+                        <div class="pinyin">Tuījiàn cài shì shénme?</div>
+                        <div class="korean">추천 메뉴가 뭐예요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">这个有吗？</div>
+                        <div class="pinyin">Zhège yǒu ma?</div>
+                        <div class="korean">이거 있나요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">주문</div>
+                    <div class="phrase-item">
+                        <div class="chinese">你好，点菜</div>
+                        <div class="pinyin">Nǐ hǎo, diǎn cài</div>
+                        <div class="korean">저기요, 주문할게요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">这个</div>
+                        <div class="pinyin">Zhège</div>
+                        <div class="korean">이거요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">一份 / 两份</div>
+                        <div class="pinyin">Yí fèn / Liǎng fèn</div>
+                        <div class="korean">1인분 / 2인분</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">추가 요청</div>
+                    <div class="phrase-item">
+                        <div class="chinese">给我一双筷子</div>
+                        <div class="pinyin">Gěi wǒ yì shuāng kuàizi</div>
+                        <div class="korean">젓가락 한 쌍 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">给我一个勺子</div>
+                        <div class="pinyin">Gěi wǒ yí gè sháozi</div>
+                        <div class="korean">숟가락 하나 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">不要太辣</div>
+                        <div class="pinyin">Bú yào tài là</div>
+                        <div class="korean">너무 맵지 않게 해 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">못 먹는 재료</div>
+                    <div class="phrase-item">
+                        <div class="chinese">有香菜吗？</div>
+                        <div class="pinyin">Yǒu xiāngcài ma?</div>
+                        <div class="korean">고수 들어가요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">不要香菜</div>
+                        <div class="pinyin">Bú yào xiāngcài</div>
+                        <div class="korean">고수 빼 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">음료</div>
+                    <div class="phrase-item">
+                        <div class="chinese">一罐可乐</div>
+                        <div class="pinyin">Yí guàn kělè</div>
+                        <div class="korean">콜라 한 캔</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">再来一瓶啤酒</div>
+                        <div class="pinyin">Zài lái yì píng píjiǔ</div>
+                        <div class="korean">맥주 한 병 더 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">포장 / 계산</div>
+                    <div class="phrase-item">
+                        <div class="chinese">打包</div>
+                        <div class="pinyin">Dǎbāo</div>
+                        <div class="korean">포장해 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">买单</div>
+                        <div class="pinyin">Mǎidān</div>
+                        <div class="korean">계산할게요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">多少钱？</div>
+                        <div class="pinyin">Duōshǎo qián?</div>
+                        <div class="korean">얼마예요?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phrase-category">
+            <h3 class="category-title" onclick="toggleCategory(this)">
+                <span>☕ 카페 (Cafe)</span>
+                <span class="arrow">▶</span>
+            </h3>
+            <div class="category-content">
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">직접 주문 요청</div>
+                    <div class="phrase-item">
+                        <div class="chinese">我是外国人，可以直接点吗？</div>
+                        <div class="pinyin">Wǒ shì wàiguórén, kěyǐ zhíjiē diǎn ma?</div>
+                        <div class="korean">외국인인데 직접 주문해도 될까요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">주문 패턴</div>
+                    <div class="phrase-item">
+                        <div class="chinese">要一杯冰美式</div>
+                        <div class="pinyin">Yào yì bēi bīng měishì</div>
+                        <div class="korean">아이스 아메리카노 한 잔 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">옵션</div>
+                    <div class="phrase-item">
+                        <div class="chinese">多加冰</div>
+                        <div class="pinyin">Duō jiā bīng</div>
+                        <div class="korean">얼음 많이 넣어 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">加一份浓缩</div>
+                        <div class="pinyin">Jiā yí fèn nóngsuō</div>
+                        <div class="korean">샷 추가</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">不要奶油</div>
+                        <div class="pinyin">Bú yào nǎiyóu</div>
+                        <div class="korean">휘핑크림 빼 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">매장 / 포장</div>
+                    <div class="phrase-item">
+                        <div class="chinese">在这儿喝 / 带走</div>
+                        <div class="pinyin">Zài zhèr hē / Dài zǒu</div>
+                        <div class="korean">매장 / 테이크아웃</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">와이파이</div>
+                    <div class="phrase-item">
+                        <div class="chinese">Wi-Fi密码是多少？</div>
+                        <div class="pinyin">Wi-Fi mìmǎ shì duōshǎo?</div>
+                        <div class="korean">와이파이 비밀번호가 뭐예요?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phrase-category">
+            <h3 class="category-title" onclick="toggleCategory(this)">
+                <span>🚕 택시 (Taxi)</span>
+                <span class="arrow">▶</span>
+            </h3>
+            <div class="category-content">
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">앱 사용</div>
+                    <div class="phrase-item">
+                        <div class="chinese">滴滴出行</div>
+                        <div class="pinyin">Dīdī Chūxíng</div>
+                        <div class="korean">디디 택시</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">탑승 시</div>
+                    <div class="phrase-item">
+                        <div class="chinese">手机号码后四位是5678</div>
+                        <div class="pinyin">Shǒujī hàomǎ hòu sì wèi shì wǔ liù qī bā</div>
+                        <div class="korean">휴대폰 번호 뒷자리 5678이에요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">트렁크</div>
+                    <div class="phrase-item">
+                        <div class="chinese">请打开后备箱</div>
+                        <div class="pinyin">Qǐng dǎkāi hòubèixiāng</div>
+                        <div class="korean">트렁크 열어 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">목적지</div>
+                    <div class="phrase-item">
+                        <div class="chinese">去外滩</div>
+                        <div class="pinyin">Qù Wàitān</div>
+                        <div class="korean">와이탄 가 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">하차</div>
+                    <div class="phrase-item">
+                        <div class="chinese">在这里下</div>
+                        <div class="pinyin">Zài zhèlǐ xià</div>
+                        <div class="korean">여기서 내려 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">往前一点</div>
+                        <div class="pinyin">Wǎng qián yìdiǎn</div>
+                        <div class="korean">조금 더 앞으로 가 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">영수증</div>
+                    <div class="phrase-item">
+                        <div class="chinese">要发票吗？</div>
+                        <div class="pinyin">Yào fāpiào ma?</div>
+                        <div class="korean">영수증 필요하세요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">请给我发票</div>
+                        <div class="pinyin">Qǐng gěi wǒ fāpiào</div>
+                        <div class="korean">영수증 주세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phrase-category">
+            <h3 class="category-title" onclick="toggleCategory(this)">
+                <span>🛍️ 쇼핑 (Shopping)</span>
+                <span class="arrow">▶</span>
+            </h3>
+            <div class="category-content">
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">혼자 보고 싶을 때</div>
+                    <div class="phrase-item">
+                        <div class="chinese">我自己看看</div>
+                        <div class="pinyin">Wǒ zìjǐ kànkan</div>
+                        <div class="korean">혼자 볼게요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">사이즈</div>
+                    <div class="phrase-item">
+                        <div class="chinese">只有这个码吗？</div>
+                        <div class="pinyin">Zhǐ yǒu zhège mǎ ma?</div>
+                        <div class="korean">이 사이즈만 있나요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">大一点 / 小一点</div>
+                        <div class="pinyin">Dà yìdiǎn / Xiǎo yìdiǎn</div>
+                        <div class="korean">조금 큰 / 작은 사이즈</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">피팅</div>
+                    <div class="phrase-item">
+                        <div class="chinese">可以试穿吗？</div>
+                        <div class="pinyin">Kěyǐ shìchuān ma?</div>
+                        <div class="korean">입어봐도 될까요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">태그 제거</div>
+                    <div class="phrase-item">
+                        <div class="chinese">我要穿着走，请把标签剪掉</div>
+                        <div class="pinyin">Wǒ yào chuānzhe zǒu, qǐng bǎ biāoqiān jiǎn diào</div>
+                        <div class="korean">바로 입을 거라서 택 제거해 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">선물 포장</div>
+                    <div class="phrase-item">
+                        <div class="chinese">送礼包装</div>
+                        <div class="pinyin">Sònglǐ bāozhuāng</div>
+                        <div class="korean">선물 포장해 주세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phrase-category">
+            <h3 class="category-title" onclick="toggleCategory(this)">
+                <span>💬 기타 요청 (General)</span>
+                <span class="arrow">▶</span>
+            </h3>
+            <div class="category-content">
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">화장실 / 엘리베이터</div>
+                    <div class="phrase-item">
+                        <div class="chinese">洗手间在哪儿？</div>
+                        <div class="pinyin">Xǐshǒujiān zài nǎr?</div>
+                        <div class="korean">화장실 어디예요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">电梯在哪儿？</div>
+                        <div class="pinyin">Diàntī zài nǎr?</div>
+                        <div class="korean">엘리베이터 어디예요?</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">못 알아들었을 때</div>
+                    <div class="phrase-item">
+                        <div class="chinese">我听不懂</div>
+                        <div class="pinyin">Wǒ tīng bù dǒng</div>
+                        <div class="korean">못 알아듣겠어요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">请说慢一点</div>
+                        <div class="pinyin">Qǐng shuō màn yìdiǎn</div>
+                        <div class="korean">천천히 말해 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">可以再说一遍吗？</div>
+                        <div class="pinyin">Kěyǐ zài shuō yí biàn ma?</div>
+                        <div class="korean">다시 한 번 말해 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">지나갈 때</div>
+                    <div class="phrase-item">
+                        <div class="chinese">不好意思，借过一下</div>
+                        <div class="pinyin">Bù hǎoyìsi, jièguò yíxià</div>
+                        <div class="korean">실례합니다, 지나갈게요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">조용히 요청</div>
+                    <div class="phrase-item">
+                        <div class="chinese">请小声一点</div>
+                        <div class="pinyin">Qǐng xiǎoshēng yìdiǎn</div>
+                        <div class="korean">조금 조용히 해 주세요</div>
+                    </div>
+                </div>
+                <div class="phrase-group">
+                    <div class="phrase-subtitle">사진 부탁</div>
+                    <div class="phrase-item">
+                        <div class="chinese">可以帮我拍照吗？</div>
+                        <div class="pinyin">Kěyǐ bāng wǒ pāizhào ma?</div>
+                        <div class="korean">사진 찍어 주실 수 있나요?</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">拍全身</div>
+                        <div class="pinyin">Pāi quánshēn</div>
+                        <div class="korean">전신으로 찍어 주세요</div>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="chinese">把背景拍进去</div>
+                        <div class="pinyin">Bǎ bèijǐng pāi jìnqù</div>
+                        <div class="korean">배경도 나오게 찍어 주세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Have an amazing trip to Shanghai! 🎉✨<br>
+        Safe travels! 💕
+    </footer>
+</div>
+
+<script>
+function toggleCategory(element) {
+    const content = element.nextElementSibling;
+    const isActive = content.classList.contains('active');
+    
+    // Close all other categories
+    document.querySelectorAll('.category-content').forEach(cat => {
+        cat.classList.remove('active');
+    });
+    document.querySelectorAll('.category-title').forEach(title => {
+        title.classList.remove('active');
+    });
+    
+    // Toggle current category
+    if (!isActive) {
+        content.classList.add('active');
+        element.classList.add('active');
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상하이 여행 🇨🇳</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #FFB6D9 0%, #D5F4E6 50%, #FFFACD 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(270deg, #FFB6D9, #D4A5E6, #B4E7CE, #FFD700, #FFB6D9);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .trip-info {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .day-section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid;
+        }
+
+        .day1 .day-header {
+            border-color: #FFB6D9;
+        }
+
+        .day2 .day-header {
+            border-color: #B4E7CE;
+        }
+
+        .day3 .day-header {
+            border-color: #D4A5E6;
+        }
+
+        .day-number {
+            font-size: 3em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .day1 .day-number {
+            color: #FFB6D9;
+        }
+
+        .day2 .day-number {
+            color: #B4E7CE;
+        }
+
+        .day3 .day-number {
+            color: #D4A5E6;
+        }
+
+        .day-title {
+            flex: 1;
+        }
+
+        .day-date {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .activity-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 12px;
+            background: #FAFAFA;
+        }
+
+        .flight {
+            background: linear-gradient(135deg, #FFE5F1, #FFF9E6);
+            border-left: 4px solid #FFB6D9;
+        }
+
+        .hotel {
+            background: linear-gradient(135deg, #E5F9FF, #F0E5FF);
+            border-left: 4px solid #D4A5E6;
+        }
+
+        .food {
+            background: linear-gradient(135deg, #FFF9E6, #FFEBE5);
+            border-left: 4px solid #FFD700;
+        }
+
+        .activity {
+            background: linear-gradient(135deg, #E5FFF0, #E5F9FF);
+            border-left: 4px solid #B4E7CE;
+        }
+
+        .time {
+            display: inline-block;
+            background: rgba(255, 182, 217, 0.3);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 8px;
+            color: #222;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .details {
+            color: #333;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .distance {
+            color: #717171;
+            opacity: 0.8;
+        }
+
+        .map-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #B4E7CE, #98D8C8);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .map-link:hover {
+            background: linear-gradient(135deg, #98D8C8, #7EC5B5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #FFB6D9, #D4A5E6);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight.disney-gradient {
+            background: linear-gradient(270deg, #FFB6D9, #D4A5E6, #B4E7CE, #FFD700, #FFB6D9);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .note {
+            background: #FFFACD;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .info-box {
+            background: rgba(212, 165, 230, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #d48eef;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .info-value a {
+            color: #d48eef;
+            text-decoration: none;
+        }
+
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+
+        .more-info-toggle {
+            color: #D4A5E6;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            margin-top: 8px;
+            user-select: none;
+        }
+
+        .more-info-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .more-info-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .more-info-content.active {
+            max-height: 3000px;
+        }
+
+        .info-section {
+            margin: 10px 0;
+            padding: 8px 0;
+        }
+
+        .info-section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .rating .stars {
+            color: #FFD700;
+        }
+
+        .phrase-category {
+            margin: 25px 0;
+        }
+
+        .category-title {
+            font-size: 1.4em;
+            color: #D4A5E6;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-bottom: 2px solid #FFB6D9;
+            cursor: pointer;
+            user-select: none;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-title:hover {
+            background: #FFF9E6;
+            transform: translateX(5px);
+        }
+
+        .category-title .arrow {
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        .category-title.active .arrow {
+            transform: rotate(90deg);
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .category-content.active {
+            max-height: 5000px;
+        }
+
+        .phrase-group {
+            margin: 15px 0;
+        }
+
+        .phrase-subtitle {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .phrase-item {
+            background: white;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border-left: 3px solid #B4E7CE;
+        }
+
+        .chinese {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .pinyin {
+            font-size: 0.95em;
+            color: #D4A5E6;
+            font-style: italic;
+            margin-bottom: 3px;
+        }
+
+        .korean {
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .tab-navigation {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px 20px;
+            border: none;
+            background: linear-gradient(135deg, #F0F0F0, #E0E0E0);
+            color: #666;
+            font-weight: bold;
+            font-size: 1em;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            background: linear-gradient(135deg, #E5E5E5, #D5D5D5);
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #FFB6D9, #D4A5E6);
+            color: white;
+            box-shadow: 0 4px 12px rgba(212, 165, 230, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .day-section {
+                padding: 20px;
+            }
+
+            .day-number {
+                font-size: 2.5em;
+            }
+
+            .day-date {
+                font-size: 1.1em;
+            }
+
+            .activity-item {
+                padding: 12px;
+            }
+
+            .category-title {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>상하이 여행 🇨🇳</h1>
+            <div class="trip-info">
+                <div>2026년 1월 22-24일</div>
+                <div style="font-weight: bold; margin-top: 5px;">🎀 써뉴 - 진선, 누리, 유정 🎀</div>
+            </div>
+        </header>
+
+        <div class="tab-navigation">
+            <button class="tab-button active" onclick="switchTab('day1')">Day 1</button>
+            <button class="tab-button" onclick="switchTab('day2')">Day 2</button>
+            <button class="tab-button" onclick="switchTab('day3')">Day 3</button>
+            <button class="tab-button" onclick="switchTab('phrases')">중국어 회화</button>
+        </div>
+
+        <div id="day1" class="tab-content active">
+            <div class="day-section day1">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div class="day-title">
+                        <div class="day-date">1월 22일 (목)</div>
+                        <div>도착 & 와이탄</div>
+                    </div>
+                </div>
+
+                <div class="activity-item flight">
+                    <div class="title"><span class="time">08:25</span>대한항공 KE881</div>
+                    <div class="details">ICN → PVG (도착: 09:45)</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Shanghai+Pudong+International+Airport"
+                        target="_blank" class="map-link">📍 푸둥 공항</a>
+                </div>
+
+                <div class="activity-item hotel">
+                    <div class="title"><span class="time">12:00</span>그랜드 하얏트 상하이 上海金茂君悦大酒店 (푸둥)</div>
+                    <div class="details">체크인 <span class="distance">• 공항에서 30km</span></div>
+                    <a href="https://www.google.com/maps/place/Grand+Hyatt+Shanghai/@31.2353484,121.5032048,17z/data=!3m1!4b1!4m9!3m8!1s0x359a5c282b46e531:0x7a343b933021e10f!5m2!4m1!1i2!8m2!3d31.2353438!4d121.5057797!16zL20vMDh0aGRw?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank" class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">호텔 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-box">
+                            <div class="info-label">📍 주소</div>
+                            <div class="info-value">
+                                진마오 타워, 88 센츄리 애비뉴, 푸둥<br>
+                                상하이, 200121, 중국<br>
+                                上海市浦东新区世纪大道88号金茂大厦
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-label">📞 연락처</div>
+                            <div class="info-value">
+                                전화: +86 21 5049 1234<br>
+                                웹사이트: <a href="https://www.hyatt.com/grand-hyatt/ko-KR/shagh-grand-hyatt-shanghai"
+                                    target="_blank">공식 페이지</a>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-label">🕐 체크인 / 체크아웃 시간</div>
+                            <div class="info-value">
+                                체크인: 오후 3시 (얼리 체크인 정오 12시 - 호텔 확인 필요)<br>
+                                체크아웃: 정오 12시
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-label">✨ 호텔 특징</div>
+                            <div class="info-value">
+                                • 진마오 타워에 위치 (53-87층)<br>
+                                • 상하이 스카이라인 파노라마 전망<br>
+                                • 루자쭈이 금융지구 중심부<br>
+                                • 상하이 타워 & 동방명주 타워까지 도보 거리<br>
+                                • 호텔 내 다수의 레스토랑과 바<br>
+                                • 클라우드 9 바 (87층) - 세계에서 가장 높은 바<br>
+                                • 스파, 피트니스 센터 & 실내 수영장<br>
+                                • 컨시어지 서비스 이용 가능
+                            </div>
+                        </div>
+
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong><br>
+                            • 도착 전에 위챗과 위챗 페이를 미리 설정하세요 - 대부분의 장소에서 외국 카드를 받지 않습니다<br>
+                            • 호텔 로비에는 주요 명소로 가는 무료 셔틀이 있습니다 (일정은 컨시어지에게 문의)<br>
+                            • 연결된 스카이워크 시스템을 이용하여 밖으로 나가지 않고 IFC 몰 & 지하철에 도달할 수 있습니다<br>
+                            • 87층 클라우드 9 바는 오후 6시 이전에 도착하면 입장료가 없습니다<br>
+                            • 디디(중국판 우버)는 호텔 택시보다 50% 저렴합니다 - 호텔에서 목적지를 중국어로 추가해 달라고 요청하세요
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item food">
+                    <div class="title"><span class="time">13:00</span>파라다이스 가든 레스토랑 (天堂花园餐厅)</div>
+                    <div class="details">점심 <span class="distance">• 호텔에서 56m</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Paradise+Garden+Restaurant+Shanghai+Pudong"
+                        target="_blank" class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">📍 위치</div>
+                            <div>푸둥 지역 (그랜드 하얏트 근처로 추정)</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🍽️ 요리 종류</div>
+                            <div>상하이식, 채식 & 비건 옵션</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong> 중국어 메뉴로 주문하세요 (구글 번역 카메라 사용) - 영어 메뉴보다 30% 저렴합니다. 인기 메뉴: 素食拼盘 (채식 플래터) ¥68.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item activity">
+                    <div class="title">루자쭈이 陆家嘴 & IFC 몰 国金中心</div>
+                    <div class="details">쇼핑 & 탐방 <span class="distance">• 루자쭈이역까지 219m, IFC 몰까지 143m</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=IFC+Mall+Shanghai+Lujiazui" target="_blank"
+                        class="map-link">📍 IFC 몰</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Lujiazui+Shanghai" target="_blank"
+                        class="map-link" style="margin-left: 5px;">📍 루자쭈이 지역</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">🏙️ 볼거리</div>
+                            <div>• 상하이 타워, 진마오 타워, 상하이 세계금융센터<br>
+                                • IFC 몰 - 고급 쇼핑센터<br>
+                                • 푸둥 스카이라인 사진 촬영 명소</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong> 진마오 타워 88층 전망대로 가는 고속 엘리베이터를 타세요 (¥120) - 상하이 타워와 같은 전망이지만 가격은 1/3이고 줄도 없습니다. 야경을 위해 오후 9시 30분까지 개장합니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item food">
+                    <div class="title"><span class="time">17:00</span>더 번드 넘버 5 (성용싱 盛永兴)</div>
+                    <div class="details">베이징 덕 北京烤鸭 (페킹덕) <span class="distance">• IFC 몰에서 1.1km</span></div>
+                    <a href="https://google.com/maps?q=The+Bund+No.5,+甘泉地区+Huang+Pu+Qu,+Shang+Hai+Shi,+중국+200002&ftid=0x35b27058909ef3c9:0x6be3c18113398111&entry=gps&lucs=,94297695,94275415,94284499,94231188,94280568,47071704,94218641,94282134,94286869&g_ep=CAISEjI1LjQ3LjAuODMzNTQyOTMwMBgAINeCAypRLDk0Mjk3Njk1LDk0Mjc1NDE1LDk0Mjg0NDk5LDk0MjMxMTg4LDk0MjgwNTY4LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDk0Mjg2ODY5QgJLUg%3D%3D&skid=4d6fe45a-2c69-4a26-b51e-638fc06dede6&g_st=ipc"
+                        target="_blank" class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">⭐ 평점</div>
+                            <div class="rating"><span class="stars">★★★★★</span> 미슐랭 원스타</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">💰 가격</div>
+                            <div>• 오리 한 마리: ¥500<br>
+                                • 1인당: ¥128<br>
+                                • 양념: ¥8/인<br>
+                                • 팬케이크: ¥10/바구니</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🍽️ 필수 메뉴</div>
+                            <div>• 페킹덕 北京烤鸭 (테이블 옆에서 서빙)<br>
+                                • 캐비어를 곁들인 오리 껍질 鱼子酱鸭皮<br>
+                                • 트러플을 곁들인 매운 전복 松露辣烧鲍鱼<br>
+                                • 칠리 후추 달팽이 麻辣田螺<br>
+                                • 참깨 소스를 곁들인 배추 芝麻酱白菜</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">✨ 특별한 특징</div>
+                            <div>• 테이블 옆에서 오리 준비<br>
+                                • 오리의 QR 코드 + 기념 열쇠고리<br>
+                                • 멋진 와이탄 전망<br>
+                                • 고급스러운 분위기</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong><br>
+                            • 위챗으로 예약하세요 (검색: 盛永兴) - 현장 방문 대비 15% 할인<br>
+                            • 반 마리 오리를 주문하세요 (¥250) - 오리 한 마리는 3명에게 너무 많습니다<br>
+                            • 비밀 메뉴 항목: "老客套餐" (단골 고객 세트) 요청 - 오리 + 사이드 4개 ¥388<br>
+                            • 예약 없이 창가 자리를 잡으려면 오후 5시 30분 이전에 도착하세요
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item activity">
+                    <div class="title">저녁 탐방</div>
+                    <div class="details">
+                        • 난징 이스트 로드 南京东路 <span class="distance">(와이탄에서 695m)</span><br>
+                        • 와이탄 外滩 (워터프런트 산책로) <span class="distance">(614m 도보)</span><br>
+                        • 동방명주 타워 东方明珠塔 <span class="distance">(875m)</span><br>
+                        • 더 네스트 바 <span class="distance">(1.2km)</span> → 호텔 <span class="distance">(1.8km)</span>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Nanjing+East+Road+Shanghai" target="_blank"
+                        class="map-link">📍 난징로드</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=The+Bund+Shanghai" target="_blank"
+                        class="map-link" style="margin-left: 5px;">📍 와이탄</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Oriental+Pearl+Tower+Shanghai"
+                        target="_blank" class="map-link" style="margin-left: 5px;">📍 펄 타워</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=The+Nest+Bar+Shanghai"
+                        target="_blank" class="map-link" style="margin-left: 5px;">📍 더 네스트</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">🛍️ 난징 이스트 로드 南京东路</div>
+                            <div>• 중국에서 가장 유명한 쇼핑거리 (5.5km)<br>
+                                • 네온 사인과 역사적인 백화점이 있는 보행자 천국<br>
+                                • 빈티지 관광 트램: ¥5 (오전 8:30 - 오후 10:00)<br>
+                                • 국제 브랜드와 100년 된 가게들의 혼합 (예: 용안 1918)<br>
+                                • 대부분의 상점: 오전 10시 - 오후 10시</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🌃 와이탄 外滩</div>
+                            <div>• 1920-40년대 식민지 시대 건물 52개가 있는 1.5km 워터프런트<br>
+                                • "건물의 박물관" - 고딕, 바로크, 아르데코 양식<br>
+                                • 조명 켜짐: 오후 6시 | 라이트 쇼: 오후 7시-11시<br>
+                                • 유명한 건물: 피스 호텔, 관세청 시계탑, HSBC 빌딩<br>
+                                • 황푸강 건너편 미래적인 푸둥 스카이라인과 마주함</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🗼 동방명주 타워 东方明珠塔</div>
+                            <div>• 분홍색 구체가 있는 상하이의 상징적인 468m TV 타워 (1994년 건설)<br>
+                                • 3개의 전망대: 263m, 259m, 350m 레벨<br>
+                                • 티켓: ¥180-220 | 운영시간: 오전 9시 - 오후 9시 30분<br>
+                                • 유리 바닥 전망대, 회전 레스토랑, 상하이 역사 박물관 (지하)</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🍸 더 네스트 바</div>
+                            <div>• 와이탄 스카이라인 전망이 있는 6층의 세련된 루프탑 가스트로라운지<br>
+                                • 위치: 130 베이징 이스트 로드, 중스 맨션<br>
+                                • 아늑한 소파, 3개의 테라스, 스칸디나비아풍 쉐어링 플레이트<br>
+                                • 시그니처: 셰프 프레디 라울의 그레이 구스 보드카 칵테일<br>
+                                • 평점: 4.4/5, 상하이 레스토랑 8,841개 중 64위</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong><br>
+                            • 와이탄 방문은 오후 6시 (조명 켜짐, 적은 인파) 또는 오후 10시 이후 - 오후 7-9시 피크 러시 피하기<br>
+                            • 사진 꿀팁: 번드 관광 터널 (¥50, 5분)을 통해 푸둥으로 건너가서 밝게 빛나는 식민지 건물의 역뷰 사진 촬영<br>
+                            • 무료 WiFi: "i-Shanghai" 네트워크 (로그인 불필요)<br>
+                            • 난징로드 노점상들은 3배 요금 청구 - FamilyMart/7-11 이용<br>
+                            • 더 네스트: 테라스 좌석 예약, 해피아워 오후 5-7시<br>
+                            • 재킷 가져가기 - 와이탄은 밤에 바람이 붑니다!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="day2" class="tab-content">
+            <div class="day-section day2">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div class="day-title">
+                        <div class="day-date">1월 23일 (금)</div>
+                        <div>상하이 디즈니랜드 🏰</div>
+                    </div>
+                </div>
+
+                <div class="highlight disney-gradient">
+                    <div class="title"
+                        style="color: white; font-size: 1.2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);"> <span
+                            class="time" style="background: rgba(255, 255, 255, 0.3);">12:30</span> 상하이 디즈니랜드
+                        上海迪士尼乐园!
+                    </div>
+                    <div style="margin-top: 10px; opacity: 0.95;">
+                        그랜드 하얏트에서 아침 식사 후 하루 종일 파크 즐기기 🎢<br>
+                        <small class="distance">호텔에서 18.6km</small>
+                    </div>
+                </div>
+
+                <a href="https://maps.app.goo.gl/HQqYDbEocHEpi4oZ7" target="_blank"
+                    class="map-link">📍 지도 열기</a>
+
+                <div class="more-info-toggle" onclick="toggleInfo(this)" style="color: #8addb5; font-size: 1.1em;">
+                    디즈니 팁 & 필수 놀이기구 ▼</div>
+                <div class="more-info-content">
+                    <div class="info-section">
+                        <div class="info-section-title">🎯 필수 놀이기구 TOP 3</div>
+                        <div><strong>1. 트론 라이트사이클 파워 런</strong> ⚡<br>
+                            • 속도: 최대 95 km/h<br>
+                            • 미래 세계를 달리는 모터사이클 스타일 코스터<br>
+                            • 네온 불빛이 빛나는 밤에 최고!<br><br>
+                            <strong>2. 캐리비안의 해적: 침몰한 보물 전투</strong> 🏴‍☠️<br>
+                            • 상하이 디즈니랜드를 방문하는 이유<br>
+                            • 차세대 놀이기구 기술 - 보트가 모든 방향으로 움직임<br>
+                            • 영화 같은 어드벤처!<br><br>
+                            <strong>3. 주토피아: 핫 퍼슈트</strong> 🐰<br>
+                            • 최신 어트랙션 (2023년 12월 오픈)<br>
+                            • 상하이 독점<br>
+                            • 매우 긴 대기 줄 - 먼저 가세요!
+                        </div>
+                    </div>
+                    <div class="info-section">
+                        <div class="info-section-title">🌟 상하이 디즈니 독점</div>
+                        <div>• 주토피아 존 (상하이만)<br>
+                            • 트레저 코브 구역 (여기만)<br>
+                            • 세계 최대 디즈니 성</div>
+                    </div>
+                    <div class="note">
+                        <strong>✅ 필수 팁:</strong><br>
+                        • 웨스트 게이트로 입장 (메인 게이트보다 덜 혼잡)<br>
+                        • 간식 지참 - 디즈니는 외부 음식 허용 (다른 파크와 다름)<br>
+                        • 지하철 11호선이 디즈니 리조트역까지 연결 (¥7) vs 택시 (¥200+)<br>
+                        • 티켓은 실명제: 원본 여권 (또는 티켓 구매 시 사용한 신분증) 지참, 입장 시 필요할 수 있음<br>
+                        • 가든 오브 이매지네이션 / 성 구역에서 일찍 사진 촬영; 나중에 붐비고 이동이 느려짐<br>
+                        • 늦은 점심 (오후 3시) 또는 이른 저녁 (오후 5시)은 대기 시간을 놀랍게 절약<br>
+                        • 불꽃놀이가 필수라면 ~50분 일찍 자리 확보; 가든 오브 이매지네이션이 추천 구역<br>
+                        • 퍼레이드는 "탈출"할 수 있는 지점에서 관람 (랜드 출구 근처), 그 다음 바로 불꽃놀이 자리로 이동<br>
+                        • 고출력 보조배터리 휴대 (앱이 하루 종일 "리모컨" 역할)<br>
+                        • 대기줄용 옷 겹쳐 입기: 상하이 겨울은 야외는 괜찮지만 강한 AC가 있는 실내 대기줄은 추움 (가벼운 겉옷 도움)
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top: 15px;">
+                    <strong>✅ 알아두기:</strong> 파크에는 모든 화장실 근처에 무료 물 리필 스테이션이 있습니다. 재사용 가능한 물병을 가져가서 돈을 절약하세요!
+                </div>
+
+                <div class="activity-item food">
+                    <div class="title">헌지우이치엔 很久以前羊肉串</div>
+                    <div class="details">양꼬치 레스토랑 - 광인 플라자 (푸둥) <span class="distance">• 디즈니랜드에서 18.6km, 호텔까지 1.1km</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=31.24340040329039,121.51312446071323"
+                        target="_blank" class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">⭐ 평점</div>
+                            <div class="rating"><span class="stars">★★★★★</span> 4.9/5 (17개 리뷰)</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🕐 운영시간</div>
+                            <div>월-금: 11:00-14:00, 17:00-24:00<br>
+                                토-일: 11:00-14:00, 16:30-24:00</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🍽️ 특선 메뉴</div>
+                            <div>• 구운 양꼬치 羊肉串 (시그니처 메뉴)<br>
+                                • 양념한 부추 구이 韭菜<br>
+                                • 닭날개 鸡翅<br>
+                                • 구운 삼겹살 꼬치 五花肉<br>
+                                • 구운 가지 烤茄子</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">✨ 소개</div>
+                            <div>상하이 브이로그에 자주 등장하는 인기 양꼬치 레스토랑. 미리 구워서 테이블로 서빙하므로 식사 중에 다양한 꼬치를 주문할 수 있습니다.</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong> 양꼬치 (¥5-8 개당), 닭날개, 유명한 구운 가지를 주문하세요. 푸둥 호텔 근처에 위치 - 디즈니 후 완벽한 저녁 식사 장소! 양꼬치는 부추 구이와 완벽하게 어울립니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item hotel">
+                    <div class="title">저녁</div>
+                    <div class="details">그랜드 하얏트 상하이로 복귀 <span class="distance">• 레스토랑에서 1.1km</span></div>
+                    <a href="https://www.google.com/maps/place/Grand+Hyatt+Shanghai/@31.2353484,121.5032048,17z/data=!3m1!4b1!4m9!3m8!1s0x359a5c282b46e531:0x7a343b933021e10f!5m2!4m1!1i2!8m2!3d31.2353438!4d121.5057797!16zL20vMDh0aGRw?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank" class="map-link">📍 지도 열기</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="day3" class="tab-content">
+            <div class="day-section day3">
+                <div class="day-header">
+                    <div class="day-number">3</div>
+                    <div class="day-title">
+                        <div class="day-date">1월 24일 (토)</div>
+                        <div>신티엔디 & 출발</div>
+                    </div>
+                </div>
+
+                <div class="activity-item hotel">
+                    <div class="title"><span class="time">12:00</span>호텔 체크아웃</div>
+                    <div class="details">그랜드 하얏트 상하이 - 오후 3시 30분까지 짐 보관 가능</div>
+                </div>
+
+                <div class="activity-item food">
+                    <div class="title"><span class="time">13:00</span>수이탕리 随堂里</div>
+                    <div class="details">딤섬 레스토랑 点心餐厅 <span class="distance">• 호텔에서 4.1km</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Sui+Tang+Li+The+Middle+House+Shanghai"
+                        target="_blank" class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">⭐ 평점</div>
+                            <div class="rating"><span class="stars">★★★★★</span> 미슐랭 가이드 선정<br>블랙 펄 원 다이아몬드 (6년 연속)</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">📍 위치</div>
+                            <div>더 미들 하우스 호텔, No. 366 스먼이로드, 징안구</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🍽️ 필수 주문 메뉴</div>
+                            <div>• <strong>5J 싱코 호타스 샤오롱바오 五J小笼包</strong> (프리미엄 이베리코 햄)<br>
+                                • 대리석 무늬 피부와 비트 주스를 곁들인 샤오롱바오 大理石纹小笼包<br>
+                                • 쓰촨 후추를 곁들인 윈난 오리 타진 云南花椒鸭煲<br>
+                                • 수제 오리 만두 自制鸭肉饺<br>
+                                • 소갈비 찜 红烧牛小排<br>
+                                • 두부를 곁들인 더블 끓인 마쓰타케 수프 松茸豆腐汤</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">✨ 스타일</div>
+                            <div>창의적인 트위스트가 가미된 모던 중국식 딤섬. 극적인 나선형 계단 입구가 있는 대담한 디자이너 분위기. 셰프 토니 예가 광둥, 쓰촨, 상하이 영향을 혼합합니다.</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong> 평일 런치 스페셜 (11:30-오후 2시) - 같은 요리를 40% 할인. Dianping 앱으로 예약하여 우선 좌석 확보. 5J 샤오롱바오 (¥88)는 ¥400/kg 이베리코와 같은 햄 사용 - 놀라운 가치.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item activity">
+                    <div class="title">신티엔디 新天地</div>
+                    <div class="details">고급 쇼핑 & 엔터테인먼트 지구 <span class="distance">• 레스토랑에서 1.8km</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Xintiandi+Shanghai" target="_blank"
+                        class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">🏛️ 신티엔디란?</div>
+                            <div>1920년대 스쿠먼(석문 가옥)을 복원한 상징적인 문화-상업 지구. 전통 상하이 건축과 현대적인 다이닝, 패션, 나이트라이프를 혼합합니다.</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🛍️ 쇼핑 하이라이트</div>
+                            <div>• <strong>신티엔디 스타일 몰</strong> - 패션의 "상하이 동대문"<br>
+                                • <strong>K11 아트 몰</strong> - 예술, 문화, 쇼핑의 융합<br>
+                                • 디자이너 부티크: ZUCZUG, SHANG XIA (중국 미학)</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🍽️ 주목할 만한 레스토랑</div>
+                            <div>• 야우아차 (미슐랭 스타 광둥식 딤섬)<br>
+                                • 그린 & 세이프 (유기농 농장에서 식탁까지)</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">🏛️ 문화 유적지</div>
+                            <div>중국 공산당 제1차 전국대표대회 개최지 (1921) - 원래 회의 장소 보존</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong><br>
+                            • K11 아트 몰 지하에는 MUJI (한국보다 40% 저렴) + 세금 환급 카운터<br>
+                            • 로컬 브랜드 ICICLE & JNBY는 모던 중국 패션 제공 (미국 가격의 1/2)<br>
+                            • 모든 상점의 무료 WiFi 비밀번호: xintiandi2024<br>
+                            • 타이핑 호수 지역 (북쪽 블록) = 최고의 사진, 적은 관광객
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item activity">
+                    <div class="title">우캉 로드 武康路</div>
+                    <div class="details">유럽 건축의 역사적인 가로수길 <span class="distance">• 신티엔디에서 3.8km</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Wukang+Road+Shanghai" target="_blank"
+                        class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">🏛️ 우캉 로드 소개</div>
+                            <div>1920-30년대 프랑스 조계지 시대의 역사적인 유럽 스타일 빌라가 있는 상하이에서 가장 매력적인 거리 중 하나. 여유로운 산책과 사진 촬영에 완벽합니다.</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">📸 하이라이트</div>
+                            <div>• 플라타너스가 늘어선 대로<br>
+                                • 식민지 시대 건축<br>
+                                • 트렌디한 카페와 부티크<br>
+                                • 인기 인스타그램 명소<br>
+                                • 유명한 역사적 인물의 옛 거주지</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 인사이더 팁:</strong> 우캉 맨션에서 북쪽으로 걷기 - 빈티지 상점과 숨겨진 카페가 있는 덜 관광적인 곳. 상하이 최고의 크루아상을 맛보려면 "파린 베이커리" (武康路378号) 시도 (¥18). 주말 피하기 - 10배 더 붐빕니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item activity">
+                    <div class="title">우캉 맨션 武康大楼</div>
+                    <div class="details">상징적인 프랑스 르네상스 스타일 건물 (1924) <span class="distance">• 우캉 로드에서 60m</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Wukang+Mansion+Shanghai" target="_blank"
+                        class="map-link">📍 지도 열기</a>
+                    <div class="more-info-toggle" onclick="toggleInfo(this)">추가 정보 ▼</div>
+                    <div class="more-info-content">
+                        <div class="info-section">
+                            <div class="info-section-title">🏛️ 우캉 맨션 소개</div>
+                            <div>1924년 헝가리 건축가가 지은 이 삼각형 모양의 아파트 건물은 상하이에서 가장 많이 촬영되는 랜드마크 중 하나입니다. 원래 "노르망디 아파트"라고 불렸습니다.</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">📸 방문 이유</div>
+                            <div>• 독특한 쐐기 모양 건축<br>
+                                • 클래식 프랑스 르네상스 스타일<br>
+                                • 인스타그램 유명 장소<br>
+                                • 옛 상하이 glamour의 상징<br>
+                                • 우캉 로드와 화이하이 로드 교차로에 위치</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-section-title">☕ 근처</div>
+                            <div>건물 주변에 트렌디한 카페와 베이커리가 많습니다 - 빠른 커피 타임에 완벽!</div>
+                        </div>
+                        <div class="note">
+                            <strong>✅ 사진 꿀팁:</strong> 최고의 장소는 길 건너 스타벅스 리저브 코너 (2층 창가 좌석). 커피 한 잔 (¥35) = AC와 함께 무제한 사진 시간. 골든 아워: 1월 오후 2-3시. 오전 11시-정오는 투어 그룹이 도착하므로 피하세요.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-item hotel">
+                    <div class="title"><span class="time">15:30</span>호텔로 복귀</div>
+                    <div class="details">그랜드 하얏트 상하이에서 짐 찾기 <span class="distance">• 우캉 맨션에서 7.3km</span></div>
+                    <a href="https://www.google.com/maps/place/Grand+Hyatt+Shanghai/@31.2353484,121.5032048,17z/data=!3m1!4b1!4m9!3m8!1s0x359a5c282b46e531:0x7a343b933021e10f!5m2!4m1!1i2!8m2!3d31.2353438!4d121.5057797!16zL20vMDh0aGRw?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank" class="map-link">📍 지도 열기</a>
+                </div>
+
+                <div class="activity-item flight">
+                    <div class="title"><span class="time">18:25</span>대한항공 KE2058</div>
+                    <div class="details">SHA (홍차오) → GMP (도착: 21:35) <span class="distance">• 호텔에서 16.8km</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Shanghai+Hongqiao+International+Airport"
+                        target="_blank" class="map-link">📍 홍차오 공항</a>
+                </div>
+
+                <div class="note">
+                    <strong>⚠️ 중요:</strong> 홍차오 공항 (SHA)은 신티엔디에서 지하철 10호선 (¥4) 또는 디디 (¥50-70)로 30분 거리입니다. 공항 체크인은 출발 40분 전에 마감됩니다. 최소한 오후 5시 15분까지 도착하세요. 대한항공은 터미널 2. 세금 환급 카운터는 오후 5시 30분에 마감됩니다.
+                </div>
+            </div>
+        </div>
+
+        <div id="phrases" class="tab-content">
+            <div class="day-section" style="background: linear-gradient(135deg, #FFF9E6, #FFE5F1);">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="color: #D4A5E6; font-size: 1.8em; margin-bottom: 10px;">유용한 중국어 회화</h2>
+                    <p style="color: #333;">각 카테고리를 클릭하여 펼치기</p>
+                </div>
+
+                <div class="phrase-category">
+                    <h3 class="category-title" onclick="toggleCategory(this)">
+                        <span>🏨 호텔 (Hotel)</span>
+                        <span class="arrow">▶</span>
+                    </h3>
+                    <div class="category-content">
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">외국인 숙박 가능 여부 확인</div>
+                            <div class="phrase-item">
+                                <div class="chinese">外国人可以住吗？</div>
+                                <div class="pinyin">Wàiguórén kěyǐ zhù ma?</div>
+                                <div class="korean">외국인 숙박 가능한가요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">금연룸 요청</div>
+                            <div class="phrase-item">
+                                <div class="chinese">有无烟房吗？</div>
+                                <div class="pinyin">Yǒu wú yān fáng ma?</div>
+                                <div class="korean">금연룸 있나요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">체크인 / 예약 확인</div>
+                            <div class="phrase-item">
+                                <div class="chinese">我要入住</div>
+                                <div class="pinyin">Wǒ yào rùzhù</div>
+                                <div class="korean">체크인할게요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">我在网上订的</div>
+                                <div class="pinyin">Wǒ zài wǎngshàng dìng de</div>
+                                <div class="korean">온라인으로 예약했어요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">护照</div>
+                                <div class="pinyin">Hùzhào</div>
+                                <div class="korean">여권</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">조식 확인 / 추가</div>
+                            <div class="phrase-item">
+                                <div class="chinese">包含早餐吗？</div>
+                                <div class="pinyin">Bāohán zǎocān ma?</div>
+                                <div class="korean">조식 포함인가요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">加一份早餐</div>
+                                <div class="pinyin">Jiā yí fèn zǎocān</div>
+                                <div class="korean">조식 1인분 추가해 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">一天 / 两天</div>
+                                <div class="pinyin">Yì tiān / Liǎng tiān</div>
+                                <div class="korean">하루 / 이틀</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">보증금</div>
+                            <div class="phrase-item">
+                                <div class="chinese">押金可以刷卡吗？</div>
+                                <div class="pinyin">Yājīn kěyǐ shuākǎ ma?</div>
+                                <div class="korean">보증금 카드 결제 되나요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">可以从押金里扣吗？</div>
+                                <div class="pinyin">Kěyǐ cóng yājīn lǐ kòu ma?</div>
+                                <div class="korean">보증금에서 차감할 수 있나요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">수건 추가 요청</div>
+                            <div class="phrase-item">
+                                <div class="chinese">毛巾</div>
+                                <div class="pinyin">Máojīn</div>
+                                <div class="korean">수건</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">再给我一条毛巾</div>
+                                <div class="pinyin">Zài gěi wǒ yì tiáo máojīn</div>
+                                <div class="korean">수건 한 장 더 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">两条</div>
+                                <div class="pinyin">Liǎng tiáo</div>
+                                <div class="korean">두 장</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">청소 시간 조정</div>
+                            <div class="phrase-item">
+                                <div class="chinese">现在不方便，请稍后再来</div>
+                                <div class="pinyin">Xiànzài bù fāngbiàn, qǐng shāohòu zài lái</div>
+                                <div class="korean">지금은 어려우니 조금 있다가 와 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">체크아웃 / 짐 보관</div>
+                            <div class="phrase-item">
+                                <div class="chinese">我要退房</div>
+                                <div class="pinyin">Wǒ yào tuìfáng</div>
+                                <div class="korean">체크아웃할게요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">可以寄存行李吗？</div>
+                                <div class="pinyin">Kěyǐ jìcún xíngli ma?</div>
+                                <div class="korean">짐 보관 가능할까요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">我两点来拿</div>
+                                <div class="pinyin">Wǒ liǎng diǎn lái ná</div>
+                                <div class="korean">2시에 찾으러 올게요</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phrase-category">
+                    <h3 class="category-title" onclick="toggleCategory(this)">
+                        <span>🍽️ 식당 (Restaurant)</span>
+                        <span class="arrow">▶</span>
+                    </h3>
+                    <div class="category-content">
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">자리 / 대기</div>
+                            <div class="phrase-item">
+                                <div class="chinese">有位置吗？</div>
+                                <div class="pinyin">Yǒu wèizhì ma?</div>
+                                <div class="korean">자리 있나요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">几位？</div>
+                                <div class="pinyin">Jǐ wèi?</div>
+                                <div class="korean">몇 분이세요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">要等吗？</div>
+                                <div class="pinyin">Yào děng ma?</div>
+                                <div class="korean">기다려야 하나요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">取号</div>
+                                <div class="pinyin">Qǔ hào</div>
+                                <div class="korean">번호표 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">영업 여부</div>
+                            <div class="phrase-item">
+                                <div class="chinese">现在可以点餐吗？</div>
+                                <div class="pinyin">Xiànzài kěyǐ diǎn cān ma?</div>
+                                <div class="korean">지금 주문 가능해요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">快打烊了吗？</div>
+                                <div class="pinyin">Kuài dǎyàng le ma?</div>
+                                <div class="korean">곧 문 닫나요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">메뉴 / 추천</div>
+                            <div class="phrase-item">
+                                <div class="chinese">有菜单吗？</div>
+                                <div class="pinyin">Yǒu càidān ma?</div>
+                                <div class="korean">메뉴판 있나요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">推荐菜是什么？</div>
+                                <div class="pinyin">Tuījiàn cài shì shénme?</div>
+                                <div class="korean">추천 메뉴가 뭐예요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">这个有吗？</div>
+                                <div class="pinyin">Zhège yǒu ma?</div>
+                                <div class="korean">이거 있나요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">주문</div>
+                            <div class="phrase-item">
+                                <div class="chinese">你好，点菜</div>
+                                <div class="pinyin">Nǐ hǎo, diǎn cài</div>
+                                <div class="korean">저기요, 주문할게요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">这个</div>
+                                <div class="pinyin">Zhège</div>
+                                <div class="korean">이거요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">一份 / 两份</div>
+                                <div class="pinyin">Yí fèn / Liǎng fèn</div>
+                                <div class="korean">1인분 / 2인분</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">추가 요청</div>
+                            <div class="phrase-item">
+                                <div class="chinese">给我一双筷子</div>
+                                <div class="pinyin">Gěi wǒ yì shuāng kuàizi</div>
+                                <div class="korean">젓가락 한 쌍 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">给我一个勺子</div>
+                                <div class="pinyin">Gěi wǒ yí gè sháozi</div>
+                                <div class="korean">숟가락 하나 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">不要太辣</div>
+                                <div class="pinyin">Bú yào tài là</div>
+                                <div class="korean">너무 맵지 않게 해 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">못 먹는 재료</div>
+                            <div class="phrase-item">
+                                <div class="chinese">有香菜吗？</div>
+                                <div class="pinyin">Yǒu xiāngcài ma?</div>
+                                <div class="korean">고수 들어가요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">不要香菜</div>
+                                <div class="pinyin">Bú yào xiāngcài</div>
+                                <div class="korean">고수 빼 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">음료</div>
+                            <div class="phrase-item">
+                                <div class="chinese">一罐可乐</div>
+                                <div class="pinyin">Yí guàn kělè</div>
+                                <div class="korean">콜라 한 캔</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">再来一瓶啤酒</div>
+                                <div class="pinyin">Zài lái yì píng píjiǔ</div>
+                                <div class="korean">맥주 한 병 더 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">포장 / 계산</div>
+                            <div class="phrase-item">
+                                <div class="chinese">打包</div>
+                                <div class="pinyin">Dǎbāo</div>
+                                <div class="korean">포장해 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">买单</div>
+                                <div class="pinyin">Mǎidān</div>
+                                <div class="korean">계산할게요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">多少钱？</div>
+                                <div class="pinyin">Duōshǎo qián?</div>
+                                <div class="korean">얼마예요?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phrase-category">
+                    <h3 class="category-title" onclick="toggleCategory(this)">
+                        <span>☕ 카페 (Cafe)</span>
+                        <span class="arrow">▶</span>
+                    </h3>
+                    <div class="category-content">
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">직접 주문 요청</div>
+                            <div class="phrase-item">
+                                <div class="chinese">我是外国人，可以直接点吗？</div>
+                                <div class="pinyin">Wǒ shì wàiguórén, kěyǐ zhíjiē diǎn ma?</div>
+                                <div class="korean">외국인인데 직접 주문해도 될까요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">주문 패턴</div>
+                            <div class="phrase-item">
+                                <div class="chinese">要一杯冰美式</div>
+                                <div class="pinyin">Yào yì bēi bīng měishì</div>
+                                <div class="korean">아이스 아메리카노 한 잔 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">옵션</div>
+                            <div class="phrase-item">
+                                <div class="chinese">多加冰</div>
+                                <div class="pinyin">Duō jiā bīng</div>
+                                <div class="korean">얼음 많이 넣어 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">加一份浓缩</div>
+                                <div class="pinyin">Jiā yí fèn nóngsuō</div>
+                                <div class="korean">샷 추가</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">不要奶油</div>
+                                <div class="pinyin">Bú yào nǎiyóu</div>
+                                <div class="korean">휘핑크림 빼 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">매장 / 포장</div>
+                            <div class="phrase-item">
+                                <div class="chinese">在这儿喝 / 带走</div>
+                                <div class="pinyin">Zài zhèr hē / Dài zǒu</div>
+                                <div class="korean">매장 / 테이크아웃</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">와이파이</div>
+                            <div class="phrase-item">
+                                <div class="chinese">Wi-Fi密码是多少？</div>
+                                <div class="pinyin">Wi-Fi mìmǎ shì duōshǎo?</div>
+                                <div class="korean">와이파이 비밀번호가 뭐예요?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phrase-category">
+                    <h3 class="category-title" onclick="toggleCategory(this)">
+                        <span>🚕 택시 (Taxi)</span>
+                        <span class="arrow">▶</span>
+                    </h3>
+                    <div class="category-content">
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">앱 사용</div>
+                            <div class="phrase-item">
+                                <div class="chinese">滴滴出行</div>
+                                <div class="pinyin">Dīdī Chūxíng</div>
+                                <div class="korean">디디 택시</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">탑승 시</div>
+                            <div class="phrase-item">
+                                <div class="chinese">手机号码后四位是5678</div>
+                                <div class="pinyin">Shǒujī hàomǎ hòu sì wèi shì wǔ liù qī bā</div>
+                                <div class="korean">휴대폰 번호 뒷자리 5678이에요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">트렁크</div>
+                            <div class="phrase-item">
+                                <div class="chinese">请打开后备箱</div>
+                                <div class="pinyin">Qǐng dǎkāi hòubèixiāng</div>
+                                <div class="korean">트렁크 열어 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">목적지</div>
+                            <div class="phrase-item">
+                                <div class="chinese">去外滩</div>
+                                <div class="pinyin">Qù Wàitān</div>
+                                <div class="korean">와이탄 가 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">하차</div>
+                            <div class="phrase-item">
+                                <div class="chinese">在这里下</div>
+                                <div class="pinyin">Zài zhèlǐ xià</div>
+                                <div class="korean">여기서 내려 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">往前一点</div>
+                                <div class="pinyin">Wǎng qián yìdiǎn</div>
+                                <div class="korean">조금 더 앞으로 가 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">영수증</div>
+                            <div class="phrase-item">
+                                <div class="chinese">要发票吗？</div>
+                                <div class="pinyin">Yào fāpiào ma?</div>
+                                <div class="korean">영수증 필요하세요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">请给我发票</div>
+                                <div class="pinyin">Qǐng gěi wǒ fāpiào</div>
+                                <div class="korean">영수증 주세요</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phrase-category">
+                    <h3 class="category-title" onclick="toggleCategory(this)">
+                        <span>🛍️ 쇼핑 (Shopping)</span>
+                        <span class="arrow">▶</span>
+                    </h3>
+                    <div class="category-content">
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">혼자 보고 싶을 때</div>
+                            <div class="phrase-item">
+                                <div class="chinese">我自己看看</div>
+                                <div class="pinyin">Wǒ zìjǐ kànkan</div>
+                                <div class="korean">혼자 볼게요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">사이즈</div>
+                            <div class="phrase-item">
+                                <div class="chinese">只有这个码吗？</div>
+                                <div class="pinyin">Zhǐ yǒu zhège mǎ ma?</div>
+                                <div class="korean">이 사이즈만 있나요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">大一点 / 小一点</div>
+                                <div class="pinyin">Dà yìdiǎn / Xiǎo yìdiǎn</div>
+                                <div class="korean">조금 큰 / 작은 사이즈</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">피팅</div>
+                            <div class="phrase-item">
+                                <div class="chinese">可以试穿吗？</div>
+                                <div class="pinyin">Kěyǐ shìchuān ma?</div>
+                                <div class="korean">입어봐도 될까요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">태그 제거</div>
+                            <div class="phrase-item">
+                                <div class="chinese">我要穿着走，请把标签剪掉</div>
+                                <div class="pinyin">Wǒ yào chuānzhe zǒu, qǐng bǎ biāoqiān jiǎn diào</div>
+                                <div class="korean">바로 입을 거라서 택 제거해 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">선물 포장</div>
+                            <div class="phrase-item">
+                                <div class="chinese">送礼包装</div>
+                                <div class="pinyin">Sònglǐ bāozhuāng</div>
+                                <div class="korean">선물 포장해 주세요</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phrase-category">
+                    <h3 class="category-title" onclick="toggleCategory(this)">
+                        <span>💬 기타 요청 (General)</span>
+                        <span class="arrow">▶</span>
+                    </h3>
+                    <div class="category-content">
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">화장실 / 엘리베이터</div>
+                            <div class="phrase-item">
+                                <div class="chinese">洗手间在哪儿？</div>
+                                <div class="pinyin">Xǐshǒujiān zài nǎr?</div>
+                                <div class="korean">화장실 어디예요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">电梯在哪儿？</div>
+                                <div class="pinyin">Diàntī zài nǎr?</div>
+                                <div class="korean">엘리베이터 어디예요?</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">못 알아들었을 때</div>
+                            <div class="phrase-item">
+                                <div class="chinese">我听不懂</div>
+                                <div class="pinyin">Wǒ tīng bù dǒng</div>
+                                <div class="korean">못 알아듣겠어요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">请说慢一点</div>
+                                <div class="pinyin">Qǐng shuō màn yìdiǎn</div>
+                                <div class="korean">천천히 말해 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">可以再说一遍吗？</div>
+                                <div class="pinyin">Kěyǐ zài shuō yí biàn ma?</div>
+                                <div class="korean">다시 한 번 말해 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">지나갈 때</div>
+                            <div class="phrase-item">
+                                <div class="chinese">不好意思，借过一下</div>
+                                <div class="pinyin">Bù hǎoyìsi, jièguò yíxià</div>
+                                <div class="korean">실례합니다, 지나갈게요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">조용히 요청</div>
+                            <div class="phrase-item">
+                                <div class="chinese">请小声一点</div>
+                                <div class="pinyin">Qǐng xiǎoshēng yìdiǎn</div>
+                                <div class="korean">조금 조용히 해 주세요</div>
+                            </div>
+                        </div>
+                        <div class="phrase-group">
+                            <div class="phrase-subtitle">사진 부탁</div>
+                            <div class="phrase-item">
+                                <div class="chinese">可以帮我拍照吗？</div>
+                                <div class="pinyin">Kěyǐ bāng wǒ pāizhào ma?</div>
+                                <div class="korean">사진 찍어 주실 수 있나요?</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">拍全身</div>
+                                <div class="pinyin">Pāi quánshēn</div>
+                                <div class="korean">전신으로 찍어 주세요</div>
+                            </div>
+                            <div class="phrase-item">
+                                <div class="chinese">把背景拍进去</div>
+                                <div class="pinyin">Bǎ bèijǐng pāi jìnqù</div>
+                                <div class="korean">배경도 나오게 찍어 주세요</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            상하이에서 멋진 여행 되세요! 🎉✨<br>
+            안전한 여행 되세요! 💕
+        </footer>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function toggleCategory(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+
+            document.querySelectorAll('.category-content').forEach(cat => {
+                cat.classList.remove('active');
+            });
+            document.querySelectorAll('.category-title').forEach(title => {
+                title.classList.remove('active');
+            });
+
+            if (!isActive) {
+                content.classList.add('active');
+                element.classList.add('active');
+            }
+        }
+
+        function toggleInfo(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+
+            if (isActive) {
+                content.classList.remove('active');
+                element.innerHTML = element.innerHTML.replace('▲', '▼').replace('추가 정보', '추가 정보');
+            } else {
+                content.classList.add('active');
+                element.innerHTML = element.innerHTML.replace('▼', '▲').replace('추가 정보', '추가 정보');
+            }
+        }
+    </script>
+</body>
+
+</html>
